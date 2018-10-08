@@ -9,18 +9,22 @@ namespace DataStructuresAssignment.Controllers
     public class StackController : Controller
     {
 
-        Stack<string> myStack = new Stack<string>();
+        public static Stack<string> myStack = new Stack<string>();
 
         // GET: Stack
         public ActionResult Index()
         {
+            foreach (var item in myStack)
+            {
+                ViewBag.Stack += item;
+            }
             return View();
         }
 
-        public void addOne()
+        public ActionResult addOne()
         {
             myStack.Push("New Entry " + (myStack.Count + 1));
-            Index();
+            return RedirectToAction("Index");
         }
 
         public void addHuge()
@@ -29,17 +33,23 @@ namespace DataStructuresAssignment.Controllers
             {
                 myStack.Push("New Entry " + (myStack.Count + 1));
             }
+            ViewBag.Stack = myStack;
         }
 
-        /*add display method*/
+        public ActionResult displayStack()
+        {
+            return RedirectToAction("Index");
+        }
 
         public void deleteFromStack()
         {
+            ViewBag.Stack = myStack;
             myStack.Pop();
         }
 
         public void clearStack()
         {
+            ViewBag.Stack = myStack;
             myStack.Clear();
         }
 
