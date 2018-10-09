@@ -14,20 +14,22 @@
     <!-- Sidebar -->
     <div style="width:25%">
         <h3>Menu</h3>
-        <a href="@Url.Action("Index", "Home")"> Add one item to Queue</a><br /><br />
-        <a href="@Url.Action("Index", "Home")"> Add Huge List of Items to Queue</a><br /><br />
-        <a href="@Url.Action("Index", "Home")"> Display Queue</a><br /><br />
-        <a href="@Url.Action("Index", "Home")"> Delete from Queue</a><br /><br />
-        <a href="@Url.Action("Index", "Home")"> Clear Queue</a><br /><br />
-        <a href="@Url.Action("Index", "Home")"> Search Queue</a><br /><br />
-        <a href="@Url.Action("Index", "Home")">Return to Main Menu</a><br /><br />
+        <a href="@Url.Action("addOne", "Queue")"> Add one item to Queue</a><br /><br />
+        <a href="@Url.Action("addHuge", "Queue")"> Add Huge List of Items to Queue</a><br /><br />
+        <a href="@Url.Action("Index", "Queue")"> Display Queue</a><br /><br />
+        <a href="@Url.Action("deleteFromStack", "Queue")"> Delete from Queue</a><br /><br />
+        <a href="@Url.Action("clearStack", "Queue")"> Clear Queue</a><br /><br />
+        <a href="@Url.Action("searchStack", "Queue")"> Search Queue</a><br /><br />
+        <a href="@Url.Action("Index",  "Home")">Return to Main Menu</a><br /><br />
     </div>
 
     <!-- Page Content -->
     <div style="margin-left:25%">
 
         <div class="w3-container w3-teal">
-            <h1>My Page</h1>
+            <h1>Output</h1>
+
+            @Html.Raw((String)ViewBag.Queue)
         </div>
 
 

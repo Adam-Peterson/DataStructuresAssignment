@@ -16,7 +16,8 @@ namespace DataStructuresAssignment.Controllers
         {
             foreach (var item in myStack)
             {
-                ViewBag.Stack += item;
+                ViewBag.Stack += "<p>" + item + "</p>";
+                ViewBag.StopWatch += "<p>" + item + "</p>";
             }
             return View();
         }
@@ -27,13 +28,13 @@ namespace DataStructuresAssignment.Controllers
             return RedirectToAction("Index");
         }
 
-        public void addHuge()
+        public ActionResult addHuge()
         {
-            for (int i = 0; i < 2001; i++)
-            {
+            for (int i = 0; i <2000; i++)
+            {  
                 myStack.Push("New Entry " + (myStack.Count + 1));
             }
-            ViewBag.Stack = myStack;
+            return RedirectToAction("Index");
         }
 
         public ActionResult displayStack()
@@ -41,32 +42,47 @@ namespace DataStructuresAssignment.Controllers
             return RedirectToAction("Index");
         }
 
-        public void deleteFromStack()
+        public ActionResult deleteFromStack()
         {
-            ViewBag.Stack = myStack;
-            myStack.Pop();
+            if (myStack.Count != 0)
+            {
+                myStack.Pop();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
         }
 
-        public void clearStack()
+        public ActionResult clearStack()
         {
-            ViewBag.Stack = myStack;
-            myStack.Clear();
+            if (myStack.Count != 0)
+            {
+                myStack.Clear();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
-        public void searchStack()
+        public ActionResult searchStack()
         {
-            bool bFound;
+            string sFound;
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
             sw.Start();
 
-            if (myStack.Contains("2"))
+            if (myStack.Contains("*2*"))
             {
-                bFound = true;
+                sFound = "found";
             }
             else
             {
-                bFound = false;
+                sFound = "not found";
             }
 
             sw.Stop();
@@ -74,7 +90,10 @@ namespace DataStructuresAssignment.Controllers
             TimeSpan ts = sw.Elapsed;
 
             ViewBag.StopWatch = ts;
-            ViewBag.StopWatch += bFound;
+            ViewBag.StopWatch += sFound;
+
+            return RedirectToAction("Index");
+
         }
     }
 }
