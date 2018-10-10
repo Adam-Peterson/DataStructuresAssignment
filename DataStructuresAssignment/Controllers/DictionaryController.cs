@@ -9,17 +9,24 @@ namespace DataStructuresAssignment.Controllers
     public class DictionaryController : Controller
     {
         // GET: Dictionary
-        // GET: Queue
         public static Dictionary<string, int> myDictionary = new Dictionary<string, int>();
+        public static string sFound;
+        public static string sTime;
+        public static bool bFirst;
 
-        // GET: Stack
         public ActionResult Index()
         {
             foreach (var item in myDictionary)
             {
                 ViewBag.Dictionary += "<p>" + item + "</p>";
-                ViewBag.StopWatch += "<p>" + item + "</p>";
             }
+
+            if (bFirst == true)
+            {
+                ViewBag.StopWatch = "<p>" + sFound + " in " + sTime + " miliseconds" + "</p>";
+            }
+
+
             return View();
         }
 
@@ -45,6 +52,7 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult deleteFromStack()
         {
+            bFirst = false;
             if (myDictionary.Count != 0)
             {
                 myDictionary.Remove(myDictionary.Keys.Last());
@@ -59,6 +67,7 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult clearStack()
         {
+            bFirst = false;
             if (myDictionary.Count != 0)
             {
                 myDictionary.Clear();
@@ -70,14 +79,18 @@ namespace DataStructuresAssignment.Controllers
             }
         }
 
+
+
+
         public ActionResult searchStack()
         {
-            string sFound;
+            bFirst = true;
+
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
             sw.Start();
 
-            if (myDictionary.ContainsKey("2"))
+            if (myDictionary.ContainsKey("New Entry 2"))
             {
                 sFound = "found";
             }
@@ -90,8 +103,8 @@ namespace DataStructuresAssignment.Controllers
 
             TimeSpan ts = sw.Elapsed;
 
-            ViewBag.StopWatch = ts;
-            ViewBag.StopWatch += sFound;
+            sTime = ts.ToString();
+
 
             return RedirectToAction("Index");
 

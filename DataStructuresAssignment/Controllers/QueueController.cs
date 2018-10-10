@@ -10,15 +10,23 @@ namespace DataStructuresAssignment.Controllers
     {
         // GET: Queue
         public static Queue<string> myQueue = new Queue<string>();
+        public static string sFound;
+        public static string sTime;
+        public static bool bFirst;
 
-        // GET: Stack
         public ActionResult Index()
         {
             foreach (var item in myQueue)
             {
                 ViewBag.Queue += "<p>" + item + "</p>";
-                ViewBag.StopWatch += "<p>" + item + "</p>";
             }
+
+            if (bFirst == true)
+            {
+                ViewBag.StopWatch = "<p>" + sFound + " in " + sTime + " miliseconds" + "</p>";
+            }
+
+
             return View();
         }
 
@@ -44,6 +52,7 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult deleteFromStack()
         {
+            bFirst = false;
             if (myQueue.Count != 0)
             {
                 myQueue.Dequeue();
@@ -58,6 +67,7 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult clearStack()
         {
+            bFirst = false;
             if (myQueue.Count != 0)
             {
                 myQueue.Clear();
@@ -69,14 +79,18 @@ namespace DataStructuresAssignment.Controllers
             }
         }
 
+
+
+
         public ActionResult searchStack()
         {
-            string sFound;
+            bFirst = true;
+
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
             sw.Start();
 
-            if (myQueue.Contains("*2*"))
+            if (myQueue.Contains("New Entry 2"))
             {
                 sFound = "found";
             }
@@ -89,8 +103,8 @@ namespace DataStructuresAssignment.Controllers
 
             TimeSpan ts = sw.Elapsed;
 
-            ViewBag.StopWatch = ts;
-            ViewBag.StopWatch += sFound;
+            sTime = ts.ToString();
+
 
             return RedirectToAction("Index");
 

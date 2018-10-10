@@ -9,16 +9,25 @@ namespace DataStructuresAssignment.Controllers
     public class StackController : Controller
     {
 
-        public static Stack<string> myStack = new Stack<string>();
-
         // GET: Stack
+        public static Stack<string> myStack = new Stack<string>();
+        public static string sFound;
+        public static string sTime;
+        public static bool bFirst;
+
         public ActionResult Index()
         {
             foreach (var item in myStack)
             {
                 ViewBag.Stack += "<p>" + item + "</p>";
-                ViewBag.StopWatch += "<p>" + item + "</p>";
             }
+
+            if (bFirst == true)
+            {
+                ViewBag.StopWatch = "<p>" + sFound + " in " + sTime + " miliseconds" + "</p>";
+            }
+
+
             return View();
         }
 
@@ -30,8 +39,8 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult addHuge()
         {
-            for (int i = 0; i <2000; i++)
-            {  
+            for (int i = 0; i < 2000; i++)
+            {
                 myStack.Push("New Entry " + (myStack.Count + 1));
             }
             return RedirectToAction("Index");
@@ -44,6 +53,7 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult deleteFromStack()
         {
+            bFirst = false;
             if (myStack.Count != 0)
             {
                 myStack.Pop();
@@ -58,6 +68,7 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult clearStack()
         {
+            bFirst = false;
             if (myStack.Count != 0)
             {
                 myStack.Clear();
@@ -69,14 +80,18 @@ namespace DataStructuresAssignment.Controllers
             }
         }
 
+
+
+
         public ActionResult searchStack()
         {
-            string sFound;
+            bFirst = true;
+
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
             sw.Start();
 
-            if (myStack.Contains("*2*"))
+            if (myStack.Contains("New Entry 2"))
             {
                 sFound = "found";
             }
@@ -89,8 +104,8 @@ namespace DataStructuresAssignment.Controllers
 
             TimeSpan ts = sw.Elapsed;
 
-            ViewBag.StopWatch = ts;
-            ViewBag.StopWatch += sFound;
+            sTime = ts.ToString();
+
 
             return RedirectToAction("Index");
 
