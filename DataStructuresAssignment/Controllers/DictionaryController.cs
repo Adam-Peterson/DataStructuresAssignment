@@ -45,12 +45,12 @@ namespace DataStructuresAssignment.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult displayStack()
+        public ActionResult displayQueue()
         {
             return RedirectToAction("Index");
         }
 
-        public ActionResult deleteFromStack()
+        public ActionResult deleteFromDictionary()
         {
             bFirst = false;
             if (myDictionary.Count != 0)
@@ -65,7 +65,7 @@ namespace DataStructuresAssignment.Controllers
 
         }
 
-        public ActionResult clearStack()
+        public ActionResult clearDictionary()
         {
             bFirst = false;
             if (myDictionary.Count != 0)
@@ -82,7 +82,7 @@ namespace DataStructuresAssignment.Controllers
 
 
 
-        public ActionResult searchStack()
+        public ActionResult searchDictionary()
         {
             bFirst = true;
 

@@ -45,12 +45,12 @@ namespace DataStructuresAssignment.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult displayStack()
+        public ActionResult displayQueue()
         {
             return RedirectToAction("Index");
         }
 
-        public ActionResult deleteFromStack()
+        public ActionResult deleteFromQueue()
         {
             bFirst = false;
             if (myQueue.Count != 0)
@@ -65,7 +65,7 @@ namespace DataStructuresAssignment.Controllers
 
         }
 
-        public ActionResult clearStack()
+        public ActionResult clearQueue()
         {
             bFirst = false;
             if (myQueue.Count != 0)
@@ -82,7 +82,7 @@ namespace DataStructuresAssignment.Controllers
 
 
 
-        public ActionResult searchStack()
+        public ActionResult searchQueue()
         {
             bFirst = true;
 
