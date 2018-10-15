@@ -55,7 +55,17 @@ namespace DataStructuresAssignment.Controllers
             bFirst = false;
             if (myQueue.Count != 0)
             {
-                myQueue.Dequeue();
+                string first = myQueue.Peek();
+                string current = null;
+                while (true)
+                {
+                    current = myQueue.Dequeue();
+                    if (myQueue.Peek() == first)
+                    {
+                        break;
+                    }
+                    myQueue.Enqueue(current);
+                }
                 return RedirectToAction("Index");
             }
             else
