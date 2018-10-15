@@ -39,11 +39,24 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult addHuge()
         {
-            for (int i = 0; i < 2000; i++)
+            if (myStack.Count != 0)
             {
-                myStack.Push("New Entry " + (myStack.Count + 1));
+                myStack.Clear();
+                for (int i = 0; i < 2000; i++)
+                {
+                    myStack.Push("New Entry " + (myStack.Count + 1));
+                }
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            else
+            {
+                for (int i = 0; i < 2000; i++)
+                {
+                    myStack.Push("New Entry " + (myStack.Count + 1));
+                }
+                return RedirectToAction("Index");
+            }
+
         }
 
         public ActionResult displayStack()

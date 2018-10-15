@@ -38,11 +38,23 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult addHuge()
         {
-            for (int i = 0; i < 2000; i++)
+            if (myDictionary.Count != 0)
             {
-                myDictionary.Add("New Entry " + (myDictionary.Count + 1), (myDictionary.Count + 1));
+                myDictionary.Clear();
+                for (int i = 0; i < 2000; i++)
+                {
+                    myDictionary.Add("New Entry " + (myDictionary.Count + 1), (myDictionary.Count + 1));
+                }
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            else
+            {
+                for (int i = 0; i < 2000; i++)
+                {
+                    myDictionary.Add("New Entry " + (myDictionary.Count + 1), (myDictionary.Count + 1));
+                }
+                return RedirectToAction("Index");
+            }
         }
 
         public ActionResult displayQueue()

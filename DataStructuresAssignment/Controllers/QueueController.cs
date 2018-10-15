@@ -38,11 +38,23 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult addHuge()
         {
-            for (int i = 0; i < 2000; i++)
+            if (myQueue.Count != 0)
             {
-                myQueue.Enqueue("New Entry " + (myQueue.Count + 1));
+                myQueue.Clear();
+                for (int i = 0; i < 2000; i++)
+                {
+                    myQueue.Enqueue("New Entry " + (myQueue.Count + 1));
+                }
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            else
+            {
+                for (int i = 0; i < 2000; i++)
+                {
+                    myQueue.Enqueue("New Entry " + (myQueue.Count + 1));
+                }
+                return RedirectToAction("Index");
+            }
         }
 
         public ActionResult displayQueue()
