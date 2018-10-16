@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-//test Madi comment
+//test Madi comment 
 namespace DataStructuresAssignment.Controllers
 {
     public class DictionaryController : Controller
@@ -14,12 +14,19 @@ namespace DataStructuresAssignment.Controllers
         public static string sFound;
         public static string sTime;
         public static bool bFirst;
+        public static bool bError = false;
+        public static string sErrorMessage;
 
         public ActionResult Index()
         {
             foreach (var item in myDictionary)
             {
                 ViewBag.Dictionary += "<p>" + item + "</p>";
+            }
+
+            if (bError == true)
+            {
+                ViewBag.Error = sErrorMessage;
             }
 
             if (bFirst == true)
@@ -33,12 +40,14 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult addOne()
         {
+            bError = false;
             myDictionary.Add("New Entry " + (myDictionary.Count + 1), (myDictionary.Count+1));
             return RedirectToAction("Index");
         }
 
         public ActionResult addHuge()
         {
+            bError = false;
             if (myDictionary.Count != 0)
             {
                 myDictionary.Clear();
@@ -60,6 +69,7 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult displayQueue()
         {
+            bError = false;
             return RedirectToAction("Index");
         }
 
@@ -73,6 +83,9 @@ namespace DataStructuresAssignment.Controllers
             }
             else
             {
+                bError = true;
+                sErrorMessage = "<p>There is no content to delete</p>";
+                ViewBag.Error = sErrorMessage;
                 return RedirectToAction("Index");
             }
 
@@ -88,6 +101,9 @@ namespace DataStructuresAssignment.Controllers
             }
             else
             {
+                bError = true;
+                sErrorMessage = "<p>There is no content to delete</p>";
+                ViewBag.Error = sErrorMessage;
                 return RedirectToAction("Index");
             }
         }
@@ -97,6 +113,7 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult searchDictionary()
         {
+            bError = false;
             bFirst = true;
 
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();

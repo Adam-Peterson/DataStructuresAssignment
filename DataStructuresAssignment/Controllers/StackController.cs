@@ -14,6 +14,8 @@ namespace DataStructuresAssignment.Controllers
         public static string sFound;
         public static string sTime;
         public static bool bFirst;
+        public static bool bError = false;
+        public static string sErrorMessage;
 
         public ActionResult Index()
         {
@@ -21,6 +23,12 @@ namespace DataStructuresAssignment.Controllers
             {
                 ViewBag.Stack += "<p>" + item + "</p>";
             }
+
+            if (bError == true)
+            {
+                ViewBag.Error = sErrorMessage;
+            }
+
 
             if (bFirst == true)
             {
@@ -33,12 +41,14 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult addOne()
         {
+            bError = false;
             myStack.Push("New Entry " + (myStack.Count + 1));
             return RedirectToAction("Index");
         }
 
         public ActionResult addHuge()
         {
+            bError = false;
             if (myStack.Count != 0)
             {
                 myStack.Clear();
@@ -61,6 +71,7 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult displayStack()
         {
+            bError = false;
             return RedirectToAction("Index");
         }
 
@@ -74,6 +85,9 @@ namespace DataStructuresAssignment.Controllers
             }
             else
             {
+                bError = true;
+                sErrorMessage = "<p>There is no content to delete</p>";
+                ViewBag.Error = sErrorMessage;
                 return RedirectToAction("Index");
             }
 
@@ -89,6 +103,9 @@ namespace DataStructuresAssignment.Controllers
             }
             else
             {
+                bError = true;
+                sErrorMessage = "<p>There is no content to delete</p>";
+                ViewBag.Error = sErrorMessage;
                 return RedirectToAction("Index");
             }
         }
@@ -98,6 +115,7 @@ namespace DataStructuresAssignment.Controllers
 
         public ActionResult searchStack()
         {
+            bError = false;
             bFirst = true;
 
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();

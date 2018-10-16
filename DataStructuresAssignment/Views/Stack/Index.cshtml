@@ -46,12 +46,14 @@
 
     <!-- Page Content -->
 
-        <div>
-            <h1>Output</h1>
+    <div>
+        <h1>Output</h1>
 
-            @Html.Raw((String)ViewBag.Stack)
-            @Html.Raw((String)ViewBag.StopWatch)
-        </div>
+        @Html.Raw((String)ViewBag.Stack)
+        @Html.Raw((String)ViewBag.StopWatch)
+        @Html.Raw((String)ViewBag.Error)
+
+    </div>
 
      
 </body>

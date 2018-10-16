@@ -1,7 +1,4 @@
 ﻿
-@{
-    Layout = null;
-}
 
 <!DOCTYPE html>
 
@@ -21,6 +18,11 @@ As a group, schedule a time with the TAs for grading
     <link rel="stylesheet" type="text/css" href="~/Content/styles.css">
     <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css">
     <script src="~/Scripts/script.js"></script>
+    <style>
+        body {
+            background-color: #92d3c3;
+        }
+    </style>
     <title>Index</title>
 </head>
 <body>
@@ -32,8 +34,8 @@ As a group, schedule a time with the TAs for grading
             <li><a href="@Url.Action("Index", "Exit")">Exit</a></li>
         </ul>
     </div>
-    <div class="container">
-        <img src="~/Content/Graphics/gandy_meme.jpg" />
+    <div>
+        <img src="~/Content/Graphics/gandy_meme.jpg" class="center"/>
     </div>
 
 </body>

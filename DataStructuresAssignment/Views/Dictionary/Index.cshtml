@@ -45,11 +45,13 @@
     </div>
 
     <!-- Page Content -->
-        <div>
-            <h1>Output</h1>
+    <div>
+        <h1>Output</h1>
 
-            @Html.Raw((String)ViewBag.Dictionary)
-            @Html.Raw((String)ViewBag.StopWatch)
-        </div>
+        @Html.Raw((String)ViewBag.Dictionary)
+        @Html.Raw((String)ViewBag.StopWatch)
+        @Html.Raw((String)ViewBag.Error)
+
+    </div>
 </body>
 </html>
